@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Four Sisters and the Duckbe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominion of Kings", "Dominion of Kings\Dominion of Kings.csproj", "{84E6EF40-CECC-4574-B68F-7FFFE95AADA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defense of Consolas", "Defense of Consolas\Defense of Consolas.csproj", "{AD13F703-E315-47C9-BA1D-E201C9F25893}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{84E6EF40-CECC-4574-B68F-7FFFE95AADA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84E6EF40-CECC-4574-B68F-7FFFE95AADA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84E6EF40-CECC-4574-B68F-7FFFE95AADA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD13F703-E315-47C9-BA1D-E201C9F25893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD13F703-E315-47C9-BA1D-E201C9F25893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD13F703-E315-47C9-BA1D-E201C9F25893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD13F703-E315-47C9-BA1D-E201C9F25893}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
