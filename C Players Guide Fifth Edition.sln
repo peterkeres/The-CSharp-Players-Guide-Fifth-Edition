@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taking a Number", "Taking a
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Countdown", "Countdown\Countdown.csproj", "{D0F3EAD2-A3B3-4F19-BE28-89C98940DF4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hunting The Manticore", "Hunting The Manticore\Hunting The Manticore.csproj", "{B4930B64-4898-4144-AD4D-742C0E87BE7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,5 +122,9 @@ Global
 		{D0F3EAD2-A3B3-4F19-BE28-89C98940DF4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0F3EAD2-A3B3-4F19-BE28-89C98940DF4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0F3EAD2-A3B3-4F19-BE28-89C98940DF4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4930B64-4898-4144-AD4D-742C0E87BE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4930B64-4898-4144-AD4D-742C0E87BE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4930B64-4898-4144-AD4D-742C0E87BE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4930B64-4898-4144-AD4D-742C0E87BE7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
