@@ -40,6 +40,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Countdown", "Countdown\Coun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hunting The Manticore", "Hunting The Manticore\Hunting The Manticore.csproj", "{B4930B64-4898-4144-AD4D-742C0E87BE7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulas Test", "Simulas Test\Simulas Test.csproj", "{B549F33D-C913-4FED-BDFF-E7C23DA41BEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulas Soup", "Simulas Soup\Simulas Soup.csproj", "{0C5155AA-DF3E-4CC7-B09C-E8B4C04D5692}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,5 +130,13 @@ Global
 		{B4930B64-4898-4144-AD4D-742C0E87BE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4930B64-4898-4144-AD4D-742C0E87BE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4930B64-4898-4144-AD4D-742C0E87BE7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B549F33D-C913-4FED-BDFF-E7C23DA41BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B549F33D-C913-4FED-BDFF-E7C23DA41BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B549F33D-C913-4FED-BDFF-E7C23DA41BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B549F33D-C913-4FED-BDFF-E7C23DA41BEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5155AA-DF3E-4CC7-B09C-E8B4C04D5692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5155AA-DF3E-4CC7-B09C-E8B4C04D5692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5155AA-DF3E-4CC7-B09C-E8B4C04D5692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5155AA-DF3E-4CC7-B09C-E8B4C04D5692}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
