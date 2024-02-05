@@ -1,5 +1,5 @@
 ﻿Arrow arrow = GetArrow();
-Console.WriteLine($"That arrow costs {arrow.GetCost()} gold.");
+Console.WriteLine($"That arrow costs {arrow.Cost} gold.");
 
 
 
@@ -51,40 +51,39 @@ float GetLength()
 
 public class Arrow
 {
-    private Arrowhead _arrowhead;
-    private Fletching _fletching;
-    private float _length;
-
-    public Arrowhead GetArrowhead() => _arrowhead;
-    public Fletching GetFletching() => _fletching;
-    public float GetLength() => _length;
+    public Arrowhead Arrowhead { get; }
+    public Fletching Fletching { get; }
+    public float Length { get; }
 
     public Arrow(Arrowhead arrowhead, Fletching fletching, float length)
     {
-        _arrowhead = arrowhead;
-        _fletching = fletching;
-        _length = length;
+        Arrowhead = arrowhead;
+        Fletching = fletching;
+        Length = length;
     }
 
-    public float GetCost()
+    public float Cost
     {
-        float arrowheadCost = _arrowhead switch
+        get
         {
-            Arrowhead.Steel => 10,
-            Arrowhead.Wood => 3,
-            Arrowhead.Obsidian => 5
-        };
+            float arrowheadCost = Arrowhead switch
+            {
+                Arrowhead.Steel => 10,
+                Arrowhead.Wood => 3,
+                Arrowhead.Obsidian => 5
+            };
 
-        float fletchingCost = _fletching switch
-        {
-            Fletching.Plastic => 10,
-            Fletching.TurkeyFeathers => 5,
-            Fletching.GooseFeathers => 3
-        };
+            float fletchingCost = Fletching switch
+            {
+                Fletching.Plastic => 10,
+                Fletching.TurkeyFeathers => 5,
+                Fletching.GooseFeathers => 3
+            };
 
-        float shaftCost = 0.05f * _length;
+            float shaftCost = 0.05f * Length;
 
-        return arrowheadCost + fletchingCost + shaftCost;
+            return arrowheadCost + fletchingCost + shaftCost;
+        }
     }
 }
 
