@@ -52,6 +52,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Properties of Arrows", "Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrow Factories", "Arrow Factories\Arrow Factories.csproj", "{AE73C209-F7B8-443C-B35C-8AC9A9F19073}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Point", "Point\Point.csproj", "{040E2AB0-CBF4-4392-A082-CD1A9CD8A817}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color", "Color\Color.csproj", "{346C897C-2025-40FA-A984-719A32FD6487}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -162,5 +166,13 @@ Global
 		{AE73C209-F7B8-443C-B35C-8AC9A9F19073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE73C209-F7B8-443C-B35C-8AC9A9F19073}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE73C209-F7B8-443C-B35C-8AC9A9F19073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{040E2AB0-CBF4-4392-A082-CD1A9CD8A817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{040E2AB0-CBF4-4392-A082-CD1A9CD8A817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{040E2AB0-CBF4-4392-A082-CD1A9CD8A817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{040E2AB0-CBF4-4392-A082-CD1A9CD8A817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346C897C-2025-40FA-A984-719A32FD6487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346C897C-2025-40FA-A984-719A32FD6487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346C897C-2025-40FA-A984-719A32FD6487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346C897C-2025-40FA-A984-719A32FD6487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
