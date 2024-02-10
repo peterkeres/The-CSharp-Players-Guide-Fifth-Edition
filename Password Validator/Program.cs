@@ -17,7 +17,7 @@ namespace Password_Validator // Note: actual namespace depends on the project na
             }
 
         }
-    }
+    } 
 
     
 
