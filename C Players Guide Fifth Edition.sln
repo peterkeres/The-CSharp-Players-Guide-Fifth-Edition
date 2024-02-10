@@ -68,6 +68,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15-Puzzle", "15-Puzzle\15-P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangman", "Hangman\Hangman.csproj", "{79C82688-65D1-4CC0-94EC-346C54458427}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic-Tac-Toe", "Tic-Tac-Toe\Tic-Tac-Toe.csproj", "{4CAE424F-EE60-4972-BE9C-786E67C12F42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -210,5 +212,9 @@ Global
 		{79C82688-65D1-4CC0-94EC-346C54458427}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79C82688-65D1-4CC0-94EC-346C54458427}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79C82688-65D1-4CC0-94EC-346C54458427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CAE424F-EE60-4972-BE9C-786E67C12F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CAE424F-EE60-4972-BE9C-786E67C12F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CAE424F-EE60-4972-BE9C-786E67C12F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CAE424F-EE60-4972-BE9C-786E67C12F42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
