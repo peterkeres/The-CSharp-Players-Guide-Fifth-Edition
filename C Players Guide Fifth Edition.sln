@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangman", "Hangman\Hangman.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic-Tac-Toe", "Tic-Tac-Toe\Tic-Tac-Toe.csproj", "{4CAE424F-EE60-4972-BE9C-786E67C12F42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packing Inventory", "Packing Inventory\Packing Inventory.csproj", "{B1130465-E958-4A29-9C2F-7FB1B6314D87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -216,5 +218,9 @@ Global
 		{4CAE424F-EE60-4972-BE9C-786E67C12F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CAE424F-EE60-4972-BE9C-786E67C12F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CAE424F-EE60-4972-BE9C-786E67C12F42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1130465-E958-4A29-9C2F-7FB1B6314D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1130465-E958-4A29-9C2F-7FB1B6314D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1130465-E958-4A29-9C2F-7FB1B6314D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1130465-E958-4A29-9C2F-7FB1B6314D87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
