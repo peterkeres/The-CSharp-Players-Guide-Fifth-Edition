@@ -76,6 +76,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labeling Inventory", "Label
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Old Robot", "Old Robot\Old Robot.csproj", "{B049D831-CA05-4FFE-BFA0-C8EFC5E9F630}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robotic Interface", "Robotic Interface\Robotic Interface.csproj", "{3CFA6C8C-66A3-4F12-8AEA-2EECF20FF45C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -234,5 +236,9 @@ Global
 		{B049D831-CA05-4FFE-BFA0-C8EFC5E9F630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B049D831-CA05-4FFE-BFA0-C8EFC5E9F630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B049D831-CA05-4FFE-BFA0-C8EFC5E9F630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFA6C8C-66A3-4F12-8AEA-2EECF20FF45C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFA6C8C-66A3-4F12-8AEA-2EECF20FF45C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFA6C8C-66A3-4F12-8AEA-2EECF20FF45C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFA6C8C-66A3-4F12-8AEA-2EECF20FF45C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
