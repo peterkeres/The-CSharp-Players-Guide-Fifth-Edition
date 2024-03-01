@@ -1,28 +1,15 @@
-﻿using System.Net.Mime;
-using Microsoft.VisualBasic;
-
-namespace Fountain_of_Objects // Note: actual namespace depends on the project name.
+﻿namespace Fountain_of_Objects
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            
             GameManager.Run();
-            
-            
         }
     }
-
-
-
-
-
-
-
-    // grabs commands from player and passes to game manger
-    // displays output for reach round
-    // displays win and loss screens
+    
+    
+    
     static class Ui
     {
         private static char displayCaracterSeperator = '-';
@@ -50,6 +37,34 @@ namespace Fountain_of_Objects // Note: actual namespace depends on the project n
             } while (!validCommand);
 
             GameManager.ExcuateCommand(playerCommand);
+        }
+
+        public static CavernSize GetCavernSize()
+        {
+            string userChoice;
+            
+            do
+            {
+                Console.Write("please select the size of the cavern (small, medium, or large): ");
+                userChoice = Console.ReadLine();
+
+                if (userChoice.ToLower() == CavernSize.Small.ToString().ToLower())
+                {
+                    return CavernSize.Small;
+                }
+                if (userChoice.ToLower() == CavernSize.Medium.ToString().ToLower())
+                {
+                    return CavernSize.Medium;
+                }
+                if (userChoice.ToLower() == CavernSize.Large.ToString().ToLower())
+                {
+                    return CavernSize.Large;
+                }
+                
+                
+                Console.WriteLine("not a valid option, try again.");
+            } while (true);
+            
         }
 
 
@@ -225,26 +240,75 @@ namespace Fountain_of_Objects // Note: actual namespace depends on the project n
     // confimrs win condition
     class Cavern
     {
-        private Room[,] rooms = new Room[3,3];
+        private Room[,] rooms;
         public Room CurrentRoom { get; private set; }
         public RoomPosition CurrentRoomPosition { get; private set; }
         public bool FountainActive { get; set; }
+        private int maxRows;
+        private int maxColumns;
         
 
-        public Cavern()
+        public Cavern(CavernSize cavernSize)
         {
+            switch (cavernSize)
+            {
+                case CavernSize.Small:
+                    MakeSmallCavern();
+                    break;
+                case CavernSize.Medium:
+                    MakeMediumCavern();
+                    break;
+                case CavernSize.Large:
+                    MakeLargeCavern();
+                    break;
+            }
+
+        }
+
+
+        private void MakeBlankCavern(int rows, int columns)
+        {
+            rooms = new Room[rows, columns];
+            
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    rooms[i, j] = new Room();
+                }
+            }
+
+            maxColumns = columns;
+            maxRows = rows;
+        }
+        
+        
+        private void MakeSmallCavern()
+        {
+            MakeBlankCavern(4,4);
             rooms[0, 0] = new StartRoom();
-            rooms[0, 1] = new Room();
             rooms[0, 2] = new FountainRoom();
             
-            rooms[1, 0] = new Room();
-            rooms[1, 1] = new Room();
-            rooms[1, 2] = new Room();
-            
-            rooms[2, 0] = new Room();
-            rooms[2, 1] = new Room();
-            rooms[2, 2] = new Room();
+            CurrentRoom = rooms[0, 0];
+            CurrentRoomPosition = new RoomPosition(0, 0);
+        }
 
+        private void MakeMediumCavern()
+        {
+            MakeBlankCavern(6,6);
+            rooms[0, 0] = new StartRoom();
+            rooms[0, 4] = new FountainRoom();
+            
+            CurrentRoom = rooms[0, 0];
+            CurrentRoomPosition = new RoomPosition(0, 0);
+        }
+
+        private void MakeLargeCavern()
+        {
+            MakeBlankCavern(8,8);
+            rooms[0, 0] = new StartRoom();
+            rooms[0, 6] = new FountainRoom();
+            
             CurrentRoom = rooms[0, 0];
             CurrentRoomPosition = new RoomPosition(0, 0);
         }
@@ -259,11 +323,11 @@ namespace Fountain_of_Objects // Note: actual namespace depends on the project n
             }
             else if (command.Action == PlayerAction.Move && command.PlayerActionArguments == PlayerActionArguments.South)
             {
-                if (CurrentRoomPosition.Row + 1 <= 2) canMove = true;
+                if (CurrentRoomPosition.Row + 1 < maxRows) canMove = true;
             }
             else if (command.Action == PlayerAction.Move && command.PlayerActionArguments == PlayerActionArguments.East)
             {
-                if (CurrentRoomPosition.Column + 1 <= 2) canMove = true;
+                if (CurrentRoomPosition.Column + 1 < maxColumns) canMove = true;
             }
             else if (command.Action == PlayerAction.Move && command.PlayerActionArguments == PlayerActionArguments.West)
             {
@@ -312,9 +376,9 @@ namespace Fountain_of_Objects // Note: actual namespace depends on the project n
 
         public static void Run()
         {
+            cavern = new Cavern(Ui.GetCavernSize());
             Ui.DisplayGameStart();
-            cavern = new Cavern();
-
+            
             do
             {
                 RunRound();
@@ -392,6 +456,11 @@ namespace Fountain_of_Objects // Note: actual namespace depends on the project n
     enum PlayerActionArguments
     {
         Fountain,North,South,East,West
+    }
+
+    enum CavernSize
+    {
+        Small,Medium,Large
     }
 
     record PlayerCommand(PlayerAction Action, PlayerActionArguments PlayerActionArguments);
