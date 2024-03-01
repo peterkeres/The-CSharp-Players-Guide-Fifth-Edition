@@ -84,6 +84,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War Preparations", "War Pre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colored Items", "Colored Items\Colored Items.csproj", "{43DEA966-F4DB-425A-A749-F52D4FE3915A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fountain of Objects", "Fountain of Objects\Fountain of Objects.csproj", "{099400EC-AAC2-453D-950F-B494B5901EDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -258,5 +260,9 @@ Global
 		{43DEA966-F4DB-425A-A749-F52D4FE3915A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43DEA966-F4DB-425A-A749-F52D4FE3915A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43DEA966-F4DB-425A-A749-F52D4FE3915A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{099400EC-AAC2-453D-950F-B494B5901EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{099400EC-AAC2-453D-950F-B494B5901EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{099400EC-AAC2-453D-950F-B494B5901EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{099400EC-AAC2-453D-950F-B494B5901EDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
