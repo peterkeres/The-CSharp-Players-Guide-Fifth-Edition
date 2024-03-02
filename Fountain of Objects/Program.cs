@@ -24,19 +24,8 @@
 
         public static void DisplayRound(Room currentRoom, RoomPosition roomPosition)
         {
-            PlayerCommand playerCommand;
-            bool validCommand;
-            
             Console.WriteLine(new string(displayCaracterSeperator,displaySeperatorLength));
             DisplayRoomInfo(currentRoom, roomPosition);
-            do
-            {
-                playerCommand = GetPlayerCommand();
-                validCommand = GameManager.CanExecuteCommand(playerCommand);
-                if(!validCommand) Console.Write("UNABLE TO TAKE ACTION:");
-            } while (!validCommand);
-
-            GameManager.ExcuateCommand(playerCommand);
         }
 
         public static CavernSize GetCavernSize()
@@ -66,8 +55,7 @@
             } while (true);
             
         }
-
-
+        
         public static void DisplayGameStart()
         {
             Console.ForegroundColor = narrativeTextColor;
@@ -91,7 +79,18 @@
             
         }
 
-        public static void CommandResultMessage(string message)
+        public static void DisplayGameLost()
+        {
+            Console.ForegroundColor = narrativeTextColor;
+            Console.WriteLine("\n\n");
+            Console.WriteLine("Its sad to have come this far just to lose\n" +
+                              "The fountain will remained closed until another hero shows up.\n" +
+                              "Cant win them all i guess");
+            Console.ForegroundColor = descriptiveTextColor;
+            Environment.Exit(0);
+        }
+
+        public static void EventMessage(string message)
         {
             Console.ForegroundColor = eventTextColor;
             Console.WriteLine(message);
@@ -110,7 +109,7 @@
 
         }
 
-        private static PlayerCommand GetPlayerCommand()
+        public static PlayerCommand GetPlayerCommand()
         {
             PlayerCommand? playerCommand;
             
@@ -180,26 +179,40 @@
     // holds display about room
     class Room
     {
-        public string? RoomDescription { get; protected set; }
-
-        public Room()
-        {
-            RoomDescription = null;
-        }
+        public string? RoomDescription { get; protected set; } = null;
+        public string? RoomAdjacentSense { get; protected set; } = null;
         
-        public Room(string roomDescription)
-        {
-            RoomDescription = roomDescription;
-        }
-
         public virtual bool Enable(PlayerCommand command)
         {
-            Ui.CommandResultMessage("Nothing happens.");
+            Ui.EventMessage("Nothing happens.");
             return false;
+        }
+
+        public virtual void PlayerEnterEvent()
+        {
+            
         }
         
     }
+    
+    class PitRoom : Room
+    {
 
+        public PitRoom()
+        {
+            RoomDescription = "something seems off about this room, the floor feels weak.";
+            RoomAdjacentSense = "You feel a draft. there is a pit in a nearby room.";
+        }
+
+        public override void PlayerEnterEvent()
+        {
+            Ui.EventMessage("The floor breaks free and you fall to your death.");
+            GameManager.PlayerDeath();
+        }
+        
+    }
+    
+    
     class StartRoom : Room
     {
         public StartRoom()
@@ -227,7 +240,7 @@
                 RoomDescription = "The water is flowing, the Fountain of Objects is active. It has been reactivated!";
                 IsFountainActive = true;
                 actionWorked = true;
-                Ui.CommandResultMessage("The water starts to flow, the fountain is working again!");
+                Ui.EventMessage("The water starts to flow, the fountain is working again!");
             }
 
 
@@ -264,8 +277,7 @@
             }
 
         }
-
-
+        
         private void MakeBlankCavern(int rows, int columns)
         {
             rooms = new Room[rows, columns];
@@ -282,12 +294,12 @@
             maxRows = rows;
         }
         
-        
         private void MakeSmallCavern()
         {
             MakeBlankCavern(4,4);
             rooms[0, 0] = new StartRoom();
-            rooms[0, 2] = new FountainRoom();
+            rooms[2, 0] = new FountainRoom();
+            rooms[0, 2] = new PitRoom();
             
             CurrentRoom = rooms[0, 0];
             CurrentRoomPosition = new RoomPosition(0, 0);
@@ -313,6 +325,52 @@
             CurrentRoomPosition = new RoomPosition(0, 0);
         }
 
+        public void NearByRoomSense()
+        {
+            if (CurrentRoomPosition.Row - 1 >= 0 && CurrentRoomPosition.Column -1 >= 0)
+            {
+                var roomAdjacentSense = rooms[CurrentRoomPosition.Row - 1, CurrentRoomPosition.Column - 1].RoomAdjacentSense;
+                if (roomAdjacentSense is not null) Ui.EventMessage(roomAdjacentSense);
+            }
+            if (CurrentRoomPosition.Row - 1 >= 0 && CurrentRoomPosition.Column >= 0)
+            {
+                var roomAdjacentSense = rooms[CurrentRoomPosition.Row - 1, CurrentRoomPosition.Column].RoomAdjacentSense;
+                if (roomAdjacentSense is not null) Ui.EventMessage(roomAdjacentSense);
+            }
+            if (CurrentRoomPosition.Row - 1 >= 0 && CurrentRoomPosition.Column +1 < maxColumns)
+            {
+                var roomAdjacentSense = rooms[CurrentRoomPosition.Row - 1, CurrentRoomPosition.Column + 1].RoomAdjacentSense;
+                if (roomAdjacentSense is not null) Ui.EventMessage(roomAdjacentSense);
+            }
+            
+            if (CurrentRoomPosition.Row >= 0 && CurrentRoomPosition.Column +1 < maxColumns)
+            {
+                var roomAdjacentSense = rooms[CurrentRoomPosition.Row, CurrentRoomPosition.Column + 1].RoomAdjacentSense;
+                if (roomAdjacentSense is not null) Ui.EventMessage(roomAdjacentSense);
+            }
+            if (CurrentRoomPosition.Row + 1 < maxRows && CurrentRoomPosition.Column +1 < maxColumns)
+            {
+                var roomAdjacentSense = rooms[CurrentRoomPosition.Row + 1, CurrentRoomPosition.Column + 1].RoomAdjacentSense;
+                if (roomAdjacentSense is not null) Ui.EventMessage(roomAdjacentSense);
+            }
+            
+            if (CurrentRoomPosition.Row + 1 < maxRows && CurrentRoomPosition.Column >= 0)
+            {
+                var roomAdjacentSense = rooms[CurrentRoomPosition.Row + 1, CurrentRoomPosition.Column].RoomAdjacentSense;
+                if (roomAdjacentSense is not null) Ui.EventMessage(roomAdjacentSense);
+            }
+            if (CurrentRoomPosition.Row + 1 < maxRows && CurrentRoomPosition.Column -1 >= 0)
+            {
+                var roomAdjacentSense = rooms[CurrentRoomPosition.Row + 1, CurrentRoomPosition.Column - 1].RoomAdjacentSense;
+                if (roomAdjacentSense is not null) Ui.EventMessage(roomAdjacentSense);
+            }
+            if (CurrentRoomPosition.Row >= 0 && CurrentRoomPosition.Column -1 >= 0)
+            {
+                var roomAdjacentSense = rooms[CurrentRoomPosition.Row, CurrentRoomPosition.Column - 1].RoomAdjacentSense;
+                if (roomAdjacentSense is not null) Ui.EventMessage(roomAdjacentSense);
+            }
+        }
+        
         public bool CanMakeMove(PlayerCommand command)
         {
             bool canMove = false;
@@ -341,23 +399,23 @@
         {
             if (command.PlayerActionArguments == PlayerActionArguments.North)
             {
-                CurrentRoom = rooms[CurrentRoomPosition.Column, CurrentRoomPosition.Row-1];
-                CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Column, CurrentRoomPosition.Row-1);
+                CurrentRoom = rooms[CurrentRoomPosition.Row-1, CurrentRoomPosition.Column];
+                CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Row-1, CurrentRoomPosition.Column);
             }
             else if (command.PlayerActionArguments == PlayerActionArguments.South)
             {
-                CurrentRoom = rooms[CurrentRoomPosition.Column, CurrentRoomPosition.Row +1];
-                CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Column, CurrentRoomPosition.Row +1);
+                CurrentRoom = rooms[CurrentRoomPosition.Row +1,CurrentRoomPosition.Column];
+                CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Row +1,CurrentRoomPosition.Column);
             }
             else if (command.PlayerActionArguments == PlayerActionArguments.East)
             {
-                CurrentRoom = rooms[CurrentRoomPosition.Column+1, CurrentRoomPosition.Row ];
-                CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Column+1, CurrentRoomPosition.Row );
+                CurrentRoom = rooms[CurrentRoomPosition.Row, CurrentRoomPosition.Column+1];
+                CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Row, CurrentRoomPosition.Column+1);
             }
             else if (command.PlayerActionArguments == PlayerActionArguments.West)
             {
-                CurrentRoom = rooms[CurrentRoomPosition.Column-1, CurrentRoomPosition.Row];
-                CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Column-1, CurrentRoomPosition.Row);
+                CurrentRoom = rooms[CurrentRoomPosition.Row,CurrentRoomPosition.Column-1];
+                CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Row,CurrentRoomPosition.Column-1);
             }
         }
         
@@ -388,11 +446,33 @@
             {
                 Ui.DisplayGameWon();
             }
+            else
+            {
+                Ui.DisplayGameLost();   
+            }
+        }
+
+        public static void PlayerDeath()
+        {
+            playerWonEvent = false;
+            gameOverEvent = true;
         }
 
         public static void RunRound()
         {
             Ui.DisplayRound(cavern.CurrentRoom, cavern.CurrentRoomPosition);
+            cavern.NearByRoomSense();
+            PlayerCommand playerCommand = Ui.GetPlayerCommand();
+            
+            if (CanExecuteCommand(playerCommand))
+            {
+                ExcuateCommand(playerCommand);
+            }
+            else
+            {
+                Ui.EventMessage("UNABLE TO TKAE ACTION");
+            }
+            
             CheckPlayerWon();
         }
 
@@ -437,6 +517,7 @@
             if (command.Action == PlayerAction.Move)
             {
                 cavern.movePlayer(command);
+                cavern.CurrentRoom.PlayerEnterEvent();
             }
 
             if (command.Action == PlayerAction.Enable)
@@ -464,7 +545,7 @@
     }
 
     record PlayerCommand(PlayerAction Action, PlayerActionArguments PlayerActionArguments);
-    record RoomPosition(int Column, int Row);
+    record RoomPosition(int Row, int Column);
 
 
 
