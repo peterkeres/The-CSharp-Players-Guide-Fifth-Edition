@@ -60,10 +60,15 @@
         public static void DisplayGameStart()
         {
             Console.ForegroundColor = narrativeTextColor;
-            Console.WriteLine("Welcome to the fountain of objects!\n" +
-                              "Goal is to find the Fountain of Objects, activate it, then return to the entrance room\n" +
-                              "Good luck player!");
-            Console.WriteLine("\n\n");
+            Console.WriteLine("You enter the Cavern of objects, a maze of rooms filled with dangerous pits in search of the Fountain of Objects.\n" +
+                              "Light is visible only in the entrance and no other light is seen anywhere in the caverns.\n" +
+                              "you must navigate the caverns with your other senses.\n" +
+                              "find the fountain of objects, activate it, and return to the entrance.\n" +
+                              "look out for pits. you will feel a breeze if a pit is in an adjance rom. if you enter a room with a pit you will die.\n" +
+                              "maelstroms are voilent froces of sentient wind. entring a room with one could transport you to any other location in the caverns. you will be able to hear their growling and goraning in nearbvys rooms.\n" +
+                              "amaroks roam the caverns. encountering on eis certain death, but you can semll their rotten stench in neary rooms.\n" +
+                              "you carry with you a bow and a quiver of arrows. you can use them to shoot monsters in the caverns but be warned. you have a limited supply.\n" +
+                              "Type in 'help' for a list of commands to enter.\n\n");
             Console.ForegroundColor = descriptiveTextColor;
 
         }
@@ -110,6 +115,18 @@
 
         }
 
+        public static void DisplayHelp()
+        {
+            Console.WriteLine("\nThe player can use the following commands.\n" +
+                              "help - displays this help menu, no arguemnts.\n" +
+                              "move - moves the player one space, has one argument direction.\n" +
+                              "\t {direction} what direction you have to move. 4 options: north, south, east, west.\n" +
+                              "shoot - shoots an arrow one space in a direction, has one argument direction.\n" +
+                              "\t {direction} what direction you want to shoot in. 4 options: north, south, east, west.\n" +
+                              "enable - activates an object in the room. has one argument object.\n" +
+                              "\t {object} what object you want to interact with in the room. 1 option: fountain.\n");
+        }
+
         public static PlayerCommand GetPlayerCommand()
         {
             PlayerCommand? playerCommand;
@@ -134,6 +151,11 @@
 
             string?[] userSplit = userCommand.Split(" ");
 
+
+            if (userSplit.Length == 1 && userSplit[0] == PlayerAction.Help.ToString().ToLower())
+            {
+                playerCommand = new PlayerCommand(PlayerAction.Help, null);
+            }
 
             if (userSplit.Length == 2)
             {
@@ -525,7 +547,7 @@
 
         }
 
-        public void FireArrow(PlayerActionArguments direction)
+        public void FireArrow(PlayerActionArguments? direction)
         {
             int row = CurrentRoomPosition.Row, column = CurrentRoomPosition.Column;
 
@@ -627,7 +649,7 @@
                 canDoCommand = cavern.CanMakeMove(command);
             }
 
-            if (command.Action == PlayerAction.Enable || command.Action == PlayerAction.Shoot)
+            if (command.Action == PlayerAction.Enable || command.Action == PlayerAction.Shoot || command.Action == PlayerAction.Help)
             {
                 canDoCommand = true;
             }
@@ -662,6 +684,11 @@
                 }
                
             }
+
+            if (command.Action == PlayerAction.Help)
+            {
+                Ui.DisplayHelp();
+            }
         }
 
         public static void RepositionPlayer(int rowsToMove, int columnsToMove)
@@ -679,7 +706,7 @@
     
     enum PlayerAction
     {
-        Move,Enable,Shoot
+        Move,Enable,Shoot,Help
     }
 
     enum PlayerActionArguments
@@ -692,7 +719,7 @@
         Small,Medium,Large
     }
 
-    record PlayerCommand(PlayerAction Action, PlayerActionArguments PlayerActionArguments);
+    record PlayerCommand(PlayerAction Action, PlayerActionArguments? PlayerActionArguments);
     record RoomPosition(int Row, int Column);
 
 
