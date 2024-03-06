@@ -195,6 +195,23 @@
         
     }
     
+    class AmaroksRoom : Room    
+    {
+
+        public AmaroksRoom()
+        {
+            RoomDescription = "You see a large, giant, wolf like creature infornt of you.";
+            RoomAdjacentSense = "You can smell the rotten stench of an amarok in a nearby room.";
+        }
+
+        public override void PlayerEnterEvent()
+        {
+            Ui.EventMessage("The Large Amaroks attacks!");
+            GameManager.PlayerDeath();
+        }
+    }
+    
+    
     class PitRoom : Room
     {
 
@@ -300,6 +317,7 @@
             rooms[0, 0] = new StartRoom();
             rooms[2, 0] = new FountainRoom();
             rooms[0, 2] = new PitRoom();
+            rooms[2, 2] = new AmaroksRoom();
             
             CurrentRoom = rooms[0, 0];
             CurrentRoomPosition = new RoomPosition(0, 0);
