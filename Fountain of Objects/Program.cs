@@ -194,6 +194,23 @@
         }
         
     }
+
+
+    class MaelstromsRoom : Room
+    {
+        public MaelstromsRoom()
+        {
+            RoomDescription = "You see a sentient, malevolent wind figure standing infront of you. It grows in size and anger.";
+            RoomAdjacentSense = "You hear the growling and goraning of a maelstrom nearby.";
+        }
+
+        public override void PlayerEnterEvent()
+        {
+            GameManager.RepositionMaelstrom(1,-2);
+            Ui.EventMessage("Player is sent flying across the cavern to a new location");
+            GameManager.RepositionPlayer(-1,2);
+        }
+    }
     
     class AmaroksRoom : Room    
     {
@@ -317,7 +334,7 @@
             rooms[0, 0] = new StartRoom();
             rooms[2, 0] = new FountainRoom();
             rooms[0, 2] = new PitRoom();
-            rooms[2, 2] = new AmaroksRoom();
+            rooms[2, 2] = new MaelstromsRoom();
             
             CurrentRoom = rooms[0, 0];
             CurrentRoomPosition = new RoomPosition(0, 0);
@@ -436,7 +453,30 @@
                 CurrentRoomPosition = new RoomPosition(CurrentRoomPosition.Row,CurrentRoomPosition.Column-1);
             }
         }
-        
+
+
+        public void RepositionPlayer(int rowsToMove, int columnsToMove)
+        {
+            int rowMovingTo = Math.Clamp(CurrentRoomPosition.Row + rowsToMove, 0, maxRows -1);
+            int columnMovingTo = Math.Clamp(CurrentRoomPosition.Column + columnsToMove, 0, maxColumns -1);
+
+            CurrentRoom = rooms[rowMovingTo, columnMovingTo];
+            CurrentRoomPosition = new RoomPosition(rowMovingTo, columnMovingTo);
+
+        }
+
+        public void RepositionMaelstrom(int rowsToMove, int columnsToMove)
+        {
+            int rowMovingTo = Math.Clamp(CurrentRoomPosition.Row + rowsToMove, 0, maxRows -1);
+            int columnMovingTo = Math.Clamp(CurrentRoomPosition.Column + columnsToMove, 0, maxColumns -1);
+
+            if (rooms[rowMovingTo, columnMovingTo].GetType() != typeof(Room)) rowMovingTo += 1;
+            if (rooms[rowMovingTo, columnMovingTo].GetType() != typeof(Room)) columnMovingTo += 1;
+
+            rooms[CurrentRoomPosition.Row, CurrentRoomPosition.Column] = new Room();
+            rooms[rowMovingTo, columnMovingTo] = new MaelstromsRoom();
+
+        }
         
     }
 
@@ -542,6 +582,16 @@
             {
                 cavern.CurrentRoom.Enable(command);
             }
+        }
+
+        public static void RepositionPlayer(int rowsToMove, int columnsToMove)
+        {
+            cavern.RepositionPlayer(rowsToMove,columnsToMove);
+        }
+
+        public static void RepositionMaelstrom(int rowsToMove, int columnsToMove)
+        {
+            cavern.RepositionMaelstrom(rowsToMove,columnsToMove);
         }
         
     }
