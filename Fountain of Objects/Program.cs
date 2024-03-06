@@ -22,9 +22,10 @@
         private static ConsoleColor fountainTextColor = ConsoleColor.Blue;
         private static ConsoleColor eventTextColor = ConsoleColor.DarkRed;
 
-        public static void DisplayRound(Room currentRoom, RoomPosition roomPosition)
+        public static void DisplayRound(Room currentRoom, RoomPosition roomPosition,int maxNumArrows ,int numOfArrows)
         {
             Console.WriteLine(new string(displayCaracterSeperator,displaySeperatorLength));
+            Console.WriteLine($"Current number of arrows left:  {maxNumArrows - numOfArrows} ");
             DisplayRoomInfo(currentRoom, roomPosition);
         }
 
@@ -154,6 +155,25 @@
                            break;
                     }
                 }
+                
+                if (userSplit[0] == PlayerAction.Shoot.ToString().ToLower())
+                {
+                    switch (userSplit[1])
+                    {  
+                        case "north":
+                            playerCommand = new PlayerCommand(PlayerAction.Shoot, PlayerActionArguments.North);
+                            break;
+                        case "south":
+                            playerCommand = new PlayerCommand(PlayerAction.Shoot, PlayerActionArguments.South);
+                            break;
+                        case "east":
+                            playerCommand = new PlayerCommand(PlayerAction.Shoot, PlayerActionArguments.East);
+                            break;
+                        case "west":
+                            playerCommand = new PlayerCommand(PlayerAction.Shoot, PlayerActionArguments.West);
+                            break;
+                    }
+                }
 
                 if (userSplit[0] == PlayerAction.Enable.ToString().ToLower())
                 {
@@ -181,6 +201,7 @@
     {
         public string? RoomDescription { get; protected set; } = null;
         public string? RoomAdjacentSense { get; protected set; } = null;
+        public bool BeenShot { get; protected set; } = false;
         
         public virtual bool Enable(PlayerCommand command)
         {
@@ -189,6 +210,11 @@
         }
 
         public virtual void PlayerEnterEvent()
+        {
+            
+        }
+
+        public virtual void ShootAtEvent()
         {
             
         }
@@ -206,9 +232,20 @@
 
         public override void PlayerEnterEvent()
         {
-            GameManager.RepositionMaelstrom(1,-2);
-            Ui.EventMessage("Player is sent flying across the cavern to a new location");
-            GameManager.RepositionPlayer(-1,2);
+            if (!BeenShot)
+            {
+                GameManager.RepositionMaelstrom(1,-2);
+                Ui.EventMessage("Player is sent flying across the cavern to a new location");
+                GameManager.RepositionPlayer(-1,2);
+            }
+
+        }
+
+        public override void ShootAtEvent()
+        {
+            RoomAdjacentSense = null;
+            RoomDescription = "You see before you a dead Maelstrom";
+            BeenShot = true;
         }
     }
     
@@ -223,8 +260,18 @@
 
         public override void PlayerEnterEvent()
         {
-            Ui.EventMessage("The Large Amaroks attacks!");
-            GameManager.PlayerDeath();
+            if (!BeenShot)
+            {
+                Ui.EventMessage("The Large Amaroks attacks!");
+                GameManager.PlayerDeath();
+            }
+        }
+
+        public override void ShootAtEvent()
+        {
+            RoomAdjacentSense = null;
+            RoomDescription = "You see before you a dead Wolf";
+            BeenShot = true;
         }
     }
     
@@ -477,6 +524,22 @@
             rooms[rowMovingTo, columnMovingTo] = new MaelstromsRoom();
 
         }
+
+        public void FireArrow(PlayerActionArguments direction)
+        {
+            int row = CurrentRoomPosition.Row, column = CurrentRoomPosition.Column;
+
+            if (direction == PlayerActionArguments.East) column += 1;
+            else if (direction == PlayerActionArguments.West) column -= 1;
+            else if (direction == PlayerActionArguments.North) row -= 1;
+            else if (direction == PlayerActionArguments.South) row += 1;
+
+
+            RoomPosition roomToShoot = new RoomPosition(Math.Clamp(row, 0, maxRows - 1), Math.Clamp(column, 0, maxColumns -1));
+            
+            rooms[roomToShoot.Row,roomToShoot.Column].ShootAtEvent();
+
+        }
         
     }
 
@@ -489,11 +552,13 @@
         private static bool fountainActive;
         private static bool gameOverEvent;
         private static bool playerWonEvent;
+        private static int maxNumArrows, shotNumArrows;
 
         public static void Run()
         {
             cavern = new Cavern(Ui.GetCavernSize());
             Ui.DisplayGameStart();
+            maxNumArrows = 2;
             
             do
             {
@@ -518,7 +583,7 @@
 
         public static void RunRound()
         {
-            Ui.DisplayRound(cavern.CurrentRoom, cavern.CurrentRoomPosition);
+            Ui.DisplayRound(cavern.CurrentRoom, cavern.CurrentRoomPosition,maxNumArrows, shotNumArrows);
             cavern.NearByRoomSense();
             PlayerCommand playerCommand = Ui.GetPlayerCommand();
             
@@ -562,7 +627,7 @@
                 canDoCommand = cavern.CanMakeMove(command);
             }
 
-            if (command.Action == PlayerAction.Enable)
+            if (command.Action == PlayerAction.Enable || command.Action == PlayerAction.Shoot)
             {
                 canDoCommand = true;
             }
@@ -582,6 +647,21 @@
             {
                 cavern.CurrentRoom.Enable(command);
             }
+
+            if (command.Action == PlayerAction.Shoot)
+            {
+                if (shotNumArrows < maxNumArrows)
+                {
+                    Ui.EventMessage("ARROW FIRED");
+                    shotNumArrows++;
+                    cavern.FireArrow(command.PlayerActionArguments);
+                }
+                else
+                {
+                    Ui.EventMessage("OUT OF ARROWS");
+                }
+               
+            }
         }
 
         public static void RepositionPlayer(int rowsToMove, int columnsToMove)
@@ -599,7 +679,7 @@
     
     enum PlayerAction
     {
-        Move,Enable
+        Move,Enable,Shoot
     }
 
     enum PlayerActionArguments
