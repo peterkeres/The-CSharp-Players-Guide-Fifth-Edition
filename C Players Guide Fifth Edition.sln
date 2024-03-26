@@ -88,6 +88,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fountain of Objects", "Foun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot Pilot", "Robot Pilot\Robot Pilot.csproj", "{E2CF3565-388C-48EE-89BA-EAFC48E52E18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "time in the cavern", "time in the cavern\time in the cavern.csproj", "{73551F5A-9480-4BF5-A414-9B2DFE7281E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -270,5 +272,9 @@ Global
 		{E2CF3565-388C-48EE-89BA-EAFC48E52E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2CF3565-388C-48EE-89BA-EAFC48E52E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2CF3565-388C-48EE-89BA-EAFC48E52E18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73551F5A-9480-4BF5-A414-9B2DFE7281E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73551F5A-9480-4BF5-A414-9B2DFE7281E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73551F5A-9480-4BF5-A414-9B2DFE7281E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73551F5A-9480-4BF5-A414-9B2DFE7281E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
