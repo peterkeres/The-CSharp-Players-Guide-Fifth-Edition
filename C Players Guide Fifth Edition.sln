@@ -86,6 +86,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colored Items", "Colored It
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fountain of Objects", "Fountain of Objects\Fountain of Objects.csproj", "{099400EC-AAC2-453D-950F-B494B5901EDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot Pilot", "Robot Pilot\Robot Pilot.csproj", "{E2CF3565-388C-48EE-89BA-EAFC48E52E18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -264,5 +266,9 @@ Global
 		{099400EC-AAC2-453D-950F-B494B5901EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{099400EC-AAC2-453D-950F-B494B5901EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{099400EC-AAC2-453D-950F-B494B5901EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2CF3565-388C-48EE-89BA-EAFC48E52E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2CF3565-388C-48EE-89BA-EAFC48E52E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2CF3565-388C-48EE-89BA-EAFC48E52E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2CF3565-388C-48EE-89BA-EAFC48E52E18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
