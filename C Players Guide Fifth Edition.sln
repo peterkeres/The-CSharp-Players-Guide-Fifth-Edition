@@ -92,6 +92,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "time in the cavern", "time 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lists of Commands", "Lists of Commands\Lists of Commands.csproj", "{1CF0A904-6512-4040-886D-8B9B05C2AD3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feud", "Feud\Feud.csproj", "{5070B071-7F4F-4722-8997-A7588A2BC850}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -282,5 +284,9 @@ Global
 		{1CF0A904-6512-4040-886D-8B9B05C2AD3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CF0A904-6512-4040-886D-8B9B05C2AD3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CF0A904-6512-4040-886D-8B9B05C2AD3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5070B071-7F4F-4722-8997-A7588A2BC850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5070B071-7F4F-4722-8997-A7588A2BC850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5070B071-7F4F-4722-8997-A7588A2BC850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5070B071-7F4F-4722-8997-A7588A2BC850}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
