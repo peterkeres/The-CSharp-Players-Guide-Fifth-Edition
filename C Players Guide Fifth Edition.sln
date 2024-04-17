@@ -94,6 +94,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lists of Commands", "Lists 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feud", "Feud\Feud.csproj", "{5070B071-7F4F-4722-8997-A7588A2BC850}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Better Random", "Better Random\Better Random.csproj", "{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -288,5 +290,9 @@ Global
 		{5070B071-7F4F-4722-8997-A7588A2BC850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5070B071-7F4F-4722-8997-A7588A2BC850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5070B071-7F4F-4722-8997-A7588A2BC850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
