@@ -96,6 +96,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feud", "Feud\Feud.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Better Random", "Better Random\Better Random.csproj", "{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exeptis Game", "Exeptis Game\Exeptis Game.csproj", "{C7DB2AB2-E023-4C26-8B18-B408AB0DC15E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -294,5 +296,9 @@ Global
 		{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F94F2F24-54C7-4BB3-8A0C-22D047E86E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7DB2AB2-E023-4C26-8B18-B408AB0DC15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7DB2AB2-E023-4C26-8B18-B408AB0DC15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7DB2AB2-E023-4C26-8B18-B408AB0DC15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7DB2AB2-E023-4C26-8B18-B408AB0DC15E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
